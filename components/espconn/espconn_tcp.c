@@ -527,11 +527,10 @@ espconn_tcp_sent(void *arg, uint8 *psent, uint16 length)
 		err = tcp_output(pcb);
 		/*If enable the copy option, change the flag for next write*/
 		if (espconn_copy_disabled(ptcp_sent)){
-				espconn_printf("ets_post ptcp_sent\n");
 			if (ptcp_sent->pcommon.ptail->unsent == 0) {
 				ptcp_sent->pcommon.write_flag = true;
 				ets_post(espconn_TaskPrio, SIG_ESPCONN_WRITE, (uint32_t)ptcp_sent);
-				espconn_printf("ets_post\n");
+				espconn_printf("ets_post sent\n");
 			}
 		}
         espconn_printf("espconn_tcp_sent err %d\n", err);
@@ -591,7 +590,7 @@ espconn_client_close(void *arg, struct tcp_pcb *pcb, uint8 type)
 		/*switch the state of espconn for application process*/
 		pclose->pespconn->state = ESPCONN_CLOSE;
 		ets_post(espconn_TaskPrio, SIG_ESPCONN_CLOSE, (uint32_t)pclose);
-		printf("ets_post\n");
+		printf("ets_post close\n");
 	}
 }
 
@@ -1441,6 +1440,7 @@ sint8 ICACHE_FLASH_ATTR espconn_tcp_delete(struct espconn *pdeletecon)
 void ICACHE_FLASH_ATTR espconn_init(void)
 {
   ets_task(espconn_Task, espconn_TaskPrio, espconn_TaskQueue, espconn_TaskQueueLen);
+  ets_run();
 	// espcon_event_t even;
 	// xTaskCreatePinnedToCore(&espconn_Task, "espconn_Task", 4096, &even, 5, NULL, 0);
 }

@@ -239,6 +239,7 @@ static int ICACHE_FLASH_ATTR http_chunked_decode(const char * chunked, char * de
 
 static void ICACHE_FLASH_ATTR http_receive_callback(void * arg, char * buf, unsigned short len)
 {
+	HTTPCLIENT_DEBUG("http_receive_callback before\n");
 	struct espconn  * conn  = (struct espconn *) arg;
 	request_args_t  * req   = (request_args_t *) conn->reserve;
 

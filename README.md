@@ -1,5 +1,5 @@
 # READ ME 
-## TOOL USE 
+## TOOL USED 
 * esp32 IDF from [https://github.com/espressif/esp-idf](https://github.com/espressif/esp-idf)
 * develop on docker image
 ## THE FUNCTION    

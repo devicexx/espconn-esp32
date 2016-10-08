@@ -1,0 +1,8 @@
+menu "Device++ SDK config"
+
+config DEBUG_ENABLED
+	bool "Enable DEBUG of Device++ SDK"
+	help
+		This enable the debug option of Device++ SDK.
+
+endmenu

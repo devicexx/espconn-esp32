@@ -1,0 +1,5 @@
+build/
+sdkconfig.old
+screenlog.0
+components/nopoll
+components/http
